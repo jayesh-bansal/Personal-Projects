@@ -19,11 +19,23 @@ int main() {
         {EMPTY, EMPTY, EMPTY}
     };
 
+    int mode;
+    printf("Choose game mode:\n");
+    printf("1. Player vs Player\n");
+    printf("2. Player vs Computer\n");
+    printf("Enter your choice (1 or 2): ");
+    scanf("%d", &mode);
+
+    if (mode != 1 && mode != 2) {
+        printf("Invalid choice. Exiting...\n");
+        return 1;
+    }
+
     printf("Tic Tac Toe\n");
-    printf("Player 1 is X (Human) and Player 2 is O (Computer).\n");
+    printf("Player 1 is X and Player 2 is O.\n");
 
     while (1) {
-        // Player 1's turn (Human)
+        // Player 1's turn
         printBoard(board);
         int move;
 
@@ -48,19 +60,44 @@ int main() {
             break;
         }
 
-        // Player 2's turn (Computer using Alpha-Beta Pruning)
-        printf("Player 2 (O) is making a move...\n");
-        move = findBestMove(board);
-        makeMove(board, move, PLAYER2);
+        if (mode == 2) {
+            // Player 2's turn (Computer using Alpha-Beta Pruning)
+            printf("Player 2 (O) is making a move...\n");
+            move = findBestMove(board);
+            makeMove(board, move, PLAYER2);
 
-        if (checkWinner(board) == -1) {
+            if (checkWinner(board) == -1) {
+                printBoard(board);
+                printf("Player 2 wins!\n");
+                break;
+            } else if (!isMovesLeft(board)) {
+                printBoard(board);
+                printf("It's a draw!\n");
+                break;
+            }
+        } else {
+            // Player 2's turn (Human)
             printBoard(board);
-            printf("Player 2 wins!\n");
-            break;
-        } else if (!isMovesLeft(board)) {
-            printBoard(board);
-            printf("It's a draw!\n");
-            break;
+            printf("Player 2 (O), enter your move (1-9): ");
+            scanf("%d", &move);
+            move--; // Adjust for 0-indexing
+
+            if (move < 0 || move > 8 || board[move / 3][move % 3] != EMPTY) {
+                printf("Invalid move. Try again.\n");
+                continue;
+            }
+
+            makeMove(board, move, PLAYER2);
+
+            if (checkWinner(board) == -1) {
+                printBoard(board);
+                printf("Player 2 wins!\n");
+                break;
+            } else if (!isMovesLeft(board)) {
+                printBoard(board);
+                printf("It's a draw!\n");
+                break;
+            }
         }
     }
 
