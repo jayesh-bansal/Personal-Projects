@@ -1,4 +1,4 @@
-import os 
+import os
 path = "Enter Your Location"
 os.chdir(path)
 def read_text_file(file_path): 
