@@ -22,21 +22,21 @@ for i in f:
         j+=1
         
 print(url)
-# for i in range(15,50):
-#     res = requests.get(url[i], headers=headers)
-#     f=res.text
-#     time.sleep(random.uniform(1,10))
-#     f=f.split('>')
-#     for i in range(len(f)):
-#         try:
-#             if 'modelname' in f[i]:
-#                 print(f[i+1][:-4],end='@')
-#             if 'link-network-detail' in f[i]:
-#                 print(f[i+1][:-3],end='@')
-#             if '"status"' in f[i]:
-#                 print(f[i+1][:-4],end='@')
-#             if 'dimensions' in f[i]:
-#                 print(f[i+1][:-4])
-#                 break
-#         except:
-#             pass
+for i in range(15,50):
+    res = requests.get(url[i], headers=headers)
+    f=res.text
+    time.sleep(random.uniform(1,10))
+    f=f.split('>')
+    for i in range(len(f)):
+        try:
+            if 'modelname' in f[i]:
+                print(f[i+1][:-4],end='@')
+            if 'link-network-detail' in f[i]:
+                print(f[i+1][:-3],end='@')
+            if '"status"' in f[i]:
+                print(f[i+1][:-4],end='@')
+            if 'dimensions' in f[i]:
+                print(f[i+1][:-4])
+                break
+        except:
+            pass
