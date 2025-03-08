@@ -19,8 +19,7 @@ for i in f:
                 s+=i[j]
                 j+=1
             url.append(s)
-        j+=1
-        
+        j+=1       
 print(url)
 for i in range(15,50):
     res = requests.get(url[i], headers=headers)
