@@ -1,5 +1,5 @@
 import os 
-path = "C:\\Users\\JB\\Downloads"
+path = "Enter Your Location"
 os.chdir(path)
 def read_text_file(file_path): 
     with open(file_path, 'r') as f: 
