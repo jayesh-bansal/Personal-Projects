@@ -20,6 +20,7 @@ import sqlite3
 from sentence_transformers import SentenceTransformer, util
 import hashlib
 
+
 app = FastAPI()
 
 app.add_middleware (
